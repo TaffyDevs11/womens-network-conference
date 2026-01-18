@@ -101,3 +101,27 @@
     
 })(jQuery);
 
+// Set target date: 28 Feb of current year
+let now = new Date();
+let currentYear = now.getFullYear();
+let targetDate = new Date(`February 28, ${currentYear} 23:59:59`);
+
+// Update countdown every 10ms for milliseconds
+setInterval(function() {
+    let now = new Date().getTime();
+    let distance = targetDate - now;
+
+    if (distance < 0) distance = 0; // stop at zero
+
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    let milliseconds = Math.floor(distance % 1000);
+
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
+    document.getElementById("seconds").innerText = seconds;
+    document.getElementById("milliseconds").innerText = milliseconds;
+}, 10);
