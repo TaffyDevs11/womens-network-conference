@@ -510,14 +510,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-/*** Membership ***/
-.membership-item {
+/*** speakers ***/
+.speakers-item {
     padding: 45px 30px;
     color: #fefefe;
     background: rgba(0, 0, 0, .7);
 }
 
-.membership-item img {
+.speakers-item img {
     position: absolute;
     top: 0;
     left: 0;
@@ -527,9 +527,49 @@ h1, h2, h3, h4, h5, h6 {
     z-index: -1;
 }
 
-.membership-item .display-1 {
+.speakers-item .display-1 {
     color: transparent;
     -webkit-text-stroke: 2px var(--primary);
+}
+
+/*** speakers hover effect ***/
+
+/* Smooth transitions */
+.speakers-item {
+    transition: background 0.5s ease;
+}
+
+/* Target all text elements except the button */
+.speakers-item h1,
+.speakers-item h4,
+.speakers-item p {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Button stays visible */
+.speakers-item a.btn {
+    position: relative;
+    z-index: 2;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Hover state */
+.speakers-item:hover {
+    background: rgba(0, 0, 0, 0); /* remove overlay */
+}
+
+/* Fade out text on hover */
+.speakers-item:hover h1,
+.speakers-item:hover h4,
+.speakers-item:hover p {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+/* Optional: make button slightly stand out on hover */
+.speakers-item:hover a.btn {
+    opacity: 1;
+    transform: translateY(-5px);
 }
 
 
@@ -799,10 +839,11 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 1320px;
     margin: 0 auto;
     padding: 5%;
+    text-align: center;
 }
 
 form {
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 auto;
     text-align: left;
     padding: 20px 0;
@@ -812,9 +853,12 @@ input,
 textarea,
 label {
     display: block;
-    margin: 0 auto;
     width: 100%;
     color: #828282;
+}
+
+label {
+    margin-top: 20px;
 }
 
 input,
@@ -850,14 +894,6 @@ textarea {
 input:focus,
 textarea:focus {
     outline: 1px solid #828282;
-}
-
-a {
-    color: #828282;
-}
-
-a:hover {
-    color: #fff;
 }
 /*---------------------------------------------------------*/
 .s-section {

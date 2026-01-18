@@ -1,27 +1,35 @@
 <?php
-$to = 'index@indexmarkets.biz';
-$name = !empty($_POST['name']) ? filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING) : '';
-$from = !empty($_POST['email']) ? filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL) : $to;
-$message = !empty($_POST['message']) ? filter_var(trim($_POST['message']), FILTER_SANITIZE_STRING) : '';
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-$body = "Name: {$name}\r\nEmail: {$from}\r\nMessage: {$message}";
+    $to = "taffythedev@gmail.com";
+    $subject = "Women's Network Conference Registration";
 
-$body = wordwrap($body, 70, "\r\n");
+    $name = htmlspecialchars($_POST["name"]);
+    $email = htmlspecialchars($_POST["email"]);
+    $organization = htmlspecialchars($_POST["organization"]);
+    $business = htmlspecialchars($_POST["business"]);
+    $interest = htmlspecialchars($_POST["interest"]);
 
-$headers = [
-    'MIME-Version: 1.0',
-    'Content-type: text/plain; charset=iso-8859-1',
-    "From: $name <$from>",
-    "Reply-To: <$from>",
-    'X-Mailer: PHP/' .phpversion()
-];
+    $message = "
+    New Registration Submission:
 
-$success = mail($to, $subject, $body, implode("\r\n", $headers));
+    Name: $name
+    Email: $email
+    Church / Organization: $organization
+    Business / Industry: $business
 
-if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
-    die(json_encode(['success' => $success]));
+    Interest:
+    $interest
+    ";
+
+    $headers = "From: $email\r\n";
+    $headers .= "Reply-To: $email\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8";
+
+    if (mail($to, $subject, $message, $headers)) {
+        echo "<h2 style='text-align:center;'>Thank you! Your submission has been sent successfully.</h2>";
+    } else {
+        echo "<h2 style='text-align:center;'>Sorry, something went wrong. Please try again.</h2>";
+    }
 }
-
-echo $success ? 'Sent Successfully.' : 'An error occurred';
-
-ini_set('display_errors', 1); error_reporting(E_ALL);
+?>
