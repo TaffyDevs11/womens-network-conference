@@ -1543,3 +1543,49 @@ textarea:focus {
         height: 300px;
     }
 }
+
+/* =========================
+   WhatsApp Chatbot Button
+   ========================= */
+
+.whatsapp-chatbot {
+    position: fixed;
+    right: 45px;
+    bottom: 110px; /* sits ABOVE back-to-top */
+    width: 55px;
+    height: 55px;
+    background-color: #25D366; /* WhatsApp green */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.whatsapp-chatbot i {
+    font-size: 28px;
+    color: #ffffff !important;
+}
+
+/* Hover effect */
+.whatsapp-chatbot:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Mobile adjustment */
+@media (max-width: 576px) {
+    .whatsapp-chatbot {
+        right: 20px;
+        bottom: 95px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .whatsapp-chatbot i {
+        font-size: 24px;
+    }
+}
