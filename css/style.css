@@ -1461,3 +1461,85 @@ textarea:focus {
 .social-img:hover {
     transform: scale(1.2);
 }
+
+/* Team Section */
+.team-section {
+    position: relative;
+    padding: 80px 0;
+}
+
+/* Ensure uniform team card size */
+.team-item {
+    position: relative;
+    height: 380px;               /* STANDARD CARD HEIGHT */
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    background-color: #000;      /* fallback while images load */
+}
+
+/* Force images to be same size */
+.team-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;           /* KEY: crops without distortion */
+    object-position: center top; /* keeps faces visible */
+    display: block;
+}
+
+/* Overlay covers bottom 1/3 consistently */
+.team-item .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 33%;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 12px;
+}
+
+/* Name & position fit cleanly */
+.team-item .overlay h5 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.2;
+    color: var(--light);
+}
+
+.team-item .overlay p {
+    font-size: 0.85rem;
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* Hover lift effect */
+.team-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 18px 35px rgba(192, 196, 1, 0.966);
+}
+
+.team-item:hover img {
+    transform: scale(1.05);
+    transition: transform 0.4s ease;
+}
+
+/* Responsive tweaks */
+@media (max-width: 992px) {
+    .team-item {
+        height: 340px;
+    }
+}
+
+@media (max-width: 576px) {
+    .team-item {
+        height: 300px;
+    }
+}
